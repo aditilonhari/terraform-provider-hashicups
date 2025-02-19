@@ -42,7 +42,7 @@ type coffeesModel struct {
 	Ingredients []coffeesIngredientsModel `tfsdk:"ingredients"`
 }
 
-// coffeesIngredientsModel maps coffee ingredients data
+// coffeesIngredientsModel maps coffee ingredients data.
 type coffeesIngredientsModel struct {
 	ID types.Int64 `tfsdk:"id"`
 }
@@ -122,7 +122,7 @@ func (d *coffeesDataSource) Read(ctx context.Context, req datasource.ReadRequest
 		return
 	}
 
-	// Map response body to model
+	// Map response body to model.
 	for _, coffee := range coffees {
 		coffeeState := coffeesModel{
 			ID:          types.Int64Value(int64(coffee.ID)),
@@ -142,7 +142,7 @@ func (d *coffeesDataSource) Read(ctx context.Context, req datasource.ReadRequest
 		state.Coffees = append(state.Coffees, coffeeState)
 	}
 
-	// Set state
+	// Set state.
 	diags := resp.State.Set(ctx, &state)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -152,7 +152,7 @@ func (d *coffeesDataSource) Read(ctx context.Context, req datasource.ReadRequest
 
 // Configure adds the provider configured client to the data source.
 func (d *coffeesDataSource) Configure(_ context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
-	// Add a nil check when handling ProviderData because Terraform
+	// Add a nil check when handling ProviderData because Terraform.
 	// sets that data after it calls the ConfigureProvider RPC.
 	if req.ProviderData == nil {
 		return
